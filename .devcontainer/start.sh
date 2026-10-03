@@ -3,7 +3,16 @@
 # (dépendances, build, base, données de démo) puis lance le serveur.
 cd "$(dirname "$0")/.."
 
+URL="http://localhost:3000"
+if [ -n "$CODESPACE_NAME" ]; then URL="https://${CODESPACE_NAME}-3000.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"; fi
+
 fail() { echo; echo "✘ $1"; echo "  Relancez : bash .devcontainer/start.sh  (et envoyez ces lignes si l'erreur persiste)"; exit 1; }
+
+# Site déjà lancé ? On affiche simplement le lien.
+if curl -s -o /dev/null --max-time 3 http://localhost:3000/api/health; then
+  echo "✔ Le site tourne déjà. Ouvrez : $URL"
+  exit 0
+fi
 
 [ -d node_modules ] || { echo "→ Installation des dépendances…"; npm install || fail "Installation des dépendances impossible"; }
 [ -f .env ] || cp .env.example .env
@@ -33,5 +42,11 @@ if [ ! -f .devcontainer/.seeded ]; then
   touch .devcontainer/.seeded
 fi
 
-echo "✔ Site prêt sur le port 3000 (onglet « Ports » → 🌐)"
-exec npm start
+echo
+echo "✔ Site prêt. Ouvrez ce lien (Ctrl+clic / Cmd+clic) :"
+echo
+echo "    $URL"
+echo
+echo "  (ou onglet « Ports » → port 3000 → icône 🌐). Laissez ce terminal ouvert."
+echo
+exec npm start -- -H 0.0.0.0 -p 3000
