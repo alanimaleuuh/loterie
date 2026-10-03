@@ -14,6 +14,20 @@ if curl -s -o /dev/null --max-time 3 http://localhost:3000/api/health; then
   exit 0
 fi
 
+# Un seul démarrage à la fois (le Codespace en lance déjà un automatiquement)
+exec 9>/tmp/lotelia-start.lock
+if ! flock -n 9; then
+  echo "⏳ Le site est déjà en cours de démarrage dans un autre terminal."
+  echo "   Attente de la fin de la préparation (jusqu'à 10 min)…"
+  for i in $(seq 1 200); do
+    if curl -s -o /dev/null --max-time 3 http://localhost:3000/api/health; then
+      echo; echo "✔ Site prêt. Ouvrez : $URL"; exit 0
+    fi
+    sleep 3
+  done
+  fail "Le démarrage en cours n'a pas abouti : regardez l'autre terminal (onglet Terminal, liste à droite)"
+fi
+
 [ -d node_modules ] || { echo "→ Installation des dépendances…"; npm install || fail "Installation des dépendances impossible"; }
 [ -f .env ] || cp .env.example .env
 if [ -n "$CODESPACE_NAME" ]; then
