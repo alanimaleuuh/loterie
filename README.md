@@ -102,3 +102,10 @@ tests/e2e.mjs        tests de parcours
 | Sauvegardes | `npm run db:backup` | Sauvegardes managées + PITR, chiffrées, hors site. |
 
 Voir aussi [`docs/PRODUCTION.md`](docs/PRODUCTION.md).
+
+## Tester sans rien installer (GitHub Codespaces)
+
+1. Sur la page GitHub du dépôt, choisir la branche `claude/prototype-lotelia`.
+2. Cliquer sur **Code → Codespaces → Create codespace on claude/prototype-lotelia**.
+3. Attendre la préparation automatique (≈ 3 à 5 min : dépendances, base PostgreSQL, données de démo, build).
+4. Le site s'ouvre dans un nouvel onglet ; sinon, onglet **Ports** → port 3000 → icône 🌐.

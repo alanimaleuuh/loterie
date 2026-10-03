@@ -19,8 +19,14 @@ const csp = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // Accès au serveur de dev via l'URL GitHub Codespaces
+  allowedDevOrigins: ["*.app.github.dev"],
   experimental: {
-    serverActions: { bodySizeLimit: "12mb" },
+    serverActions: {
+      bodySizeLimit: "12mb",
+      // Autorise les Server Actions derrière le proxy de GitHub Codespaces (URL *.app.github.dev)
+      allowedOrigins: ["*.app.github.dev", "localhost:3000"],
+    },
   },
   async headers() {
     return [

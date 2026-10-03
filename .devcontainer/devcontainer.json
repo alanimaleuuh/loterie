@@ -1,0 +1,18 @@
+{
+  "name": "Lotelia (démo)",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {}
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postAttachCommand": { "site": "npm start" },
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": { "label": "Site Lotelia", "onAutoForward": "openBrowser" }
+  },
+  "customizations": {
+    "codespaces": { "openFiles": ["README.md"] }
+  }
+}
