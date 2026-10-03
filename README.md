@@ -109,3 +109,4 @@ Voir aussi [`docs/PRODUCTION.md`](docs/PRODUCTION.md).
 2. Cliquer sur **Code → Codespaces → Create codespace on claude/prototype-lotelia**.
 3. Attendre la préparation automatique (≈ 3 à 5 min : dépendances, base PostgreSQL, données de démo, build).
 4. Le site s'ouvre dans un nouvel onglet ; sinon, onglet **Ports** → port 3000 → icône 🌐.
+5. Si le site ne démarre pas, lancer dans le terminal du Codespace : `bash .devcontainer/start.sh`

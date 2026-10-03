@@ -7,7 +7,7 @@
     "ghcr.io/devcontainers/features/common-utils:2": {}
   },
   "postCreateCommand": "bash .devcontainer/setup.sh",
-  "postAttachCommand": { "site": "npm start" },
+  "postAttachCommand": { "site": "bash .devcontainer/start.sh" },
   "forwardPorts": [3000],
   "portsAttributes": {
     "3000": { "label": "Site Lotelia", "onAutoForward": "openBrowser" }
