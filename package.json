@@ -9,15 +9,15 @@
     "typecheck": "tsc --noEmit",
     "db:migrate": "prisma migrate dev",
     "db:deploy": "prisma migrate deploy",
-    "db:seed": "tsx prisma/seed.ts",
+    "db:seed": "tsx --env-file=.env prisma/seed.ts",
     "db:reset": "prisma migrate reset --force",
-    "draws:run": "tsx scripts/run-draws.ts",
+    "draws:run": "tsx --env-file=.env scripts/run-draws.ts",
     "test:e2e": "node tests/e2e.mjs",
     "db:backup": "bash scripts/backup.sh",
     "illustrations": "tsx scripts/generate-illustrations.ts"
   },
   "prisma": {
-    "seed": "tsx prisma/seed.ts"
+    "seed": "tsx --env-file=.env prisma/seed.ts"
   },
   "dependencies": {
     "@fontsource-variable/plus-jakarta-sans": "^5.3.0",

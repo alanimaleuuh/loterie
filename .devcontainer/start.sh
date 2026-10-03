@@ -11,6 +11,9 @@ if [ -n "$CODESPACE_NAME" ]; then
   sed -i "s#^APP_URL=.*#APP_URL=\"https://${CODESPACE_NAME}-3000.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}\"#" .env
 fi
 
+# Charge la configuration pour toutes les commandes suivantes
+set -a; . ./.env; set +a
+
 if [ ! -f .next/BUILD_ID ]; then
   echo "→ Construction du site (1 à 3 minutes)…"
   npm run build || fail "La construction du site a échoué"
