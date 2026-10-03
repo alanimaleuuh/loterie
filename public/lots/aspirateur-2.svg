@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="bgaspirateur2" cx="50%" cy="28%" r="80%">
+      <stop offset="0" stop-color="#3a4252" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#18241f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="baseaspirateur2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#18241f"/><stop offset="1" stop-color="#0a110e"/></linearGradient>
+    <linearGradient id="flooraspirateur2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#000"/></linearGradient>
+    <filter id="blur" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+  <rect x="-200" y="-200" width="1200" height="1000" fill="url(#baseaspirateur2)"/>
+  <rect x="-200" y="-200" width="1200" height="1000" fill="url(#bgaspirateur2)"/>
+  <rect x="-200" y="440" width="1200" height="400" fill="url(#flooraspirateur2)" opacity="0.35"/>
+  
+      <defs>
+        <linearGradient id="aspirateur2top" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fdfdfd"/><stop offset="1" stop-color="#d9dde2"/></linearGradient>
+        <linearGradient id="aspirateur2side" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b2f36"/><stop offset="1" stop-color="#14171b"/></linearGradient>
+        <linearGradient id="aspirateur2dock" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5f6f7"/><stop offset="1" stop-color="#c9ced4"/></linearGradient>
+      </defs>
+      <ellipse cx="400" cy="452" rx="250" ry="18" fill="#0b1220" opacity="0.32" filter="url(#blur)"/>
+      <rect x="560" y="236" width="110" height="200" rx="18" fill="url(#aspirateur2dock)"/>
+      <rect x="586" y="262" width="58" height="8" rx="4" fill="#94a3b8"/>
+      <ellipse cx="380" cy="390" rx="230" ry="62" fill="url(#aspirateur2side)"/>
+      <rect x="150" y="330" width="460" height="60" fill="url(#aspirateur2side)"/>
+      <ellipse cx="380" cy="330" rx="230" ry="62" fill="url(#aspirateur2top)"/>
+      <ellipse cx="380" cy="330" rx="200" ry="50" fill="none" stroke="#cbd2d9" stroke-width="2"/>
+      <ellipse cx="380" cy="312" rx="46" ry="14" fill="#1f2328"/>
+      <rect x="334" y="296" width="92" height="16" fill="#1f2328"/>
+      <ellipse cx="380" cy="296" rx="46" ry="14" fill="#2f353d"/>
+      <circle cx="300" cy="338" r="7" fill="#14b8a6"/>
+      <rect x="150" y="358" width="460" height="6" fill="#3a4049" opacity=".6"/>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="250 120 300 225" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="bgtablemanger3" cx="50%" cy="28%" r="80%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#f2ede5" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="basetablemanger3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2ede5"/><stop offset="1" stop-color="#e5dccf"/></linearGradient>
+    <linearGradient id="floortablemanger3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e5dccf"/><stop offset="1" stop-color="#e5dccf"/></linearGradient>
+    <filter id="blur" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+  <rect x="-200" y="-200" width="1200" height="1000" fill="url(#basetablemanger3)"/>
+  <rect x="-200" y="-200" width="1200" height="1000" fill="url(#bgtablemanger3)"/>
+  <rect x="-200" y="440" width="1200" height="400" fill="url(#floortablemanger3)" opacity="0.45"/>
+  
+      <defs>
+        <linearGradient id="tablemanger3top" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c99a6b"/><stop offset="1" stop-color="#a8784d"/></linearGradient>
+        <linearGradient id="tablemanger3edge" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5f3a"/><stop offset="1" stop-color="#6e4a2c"/></linearGradient>
+        <linearGradient id="tablemanger3vase" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f5efe6"/><stop offset="1" stop-color="#d8cdbd"/></linearGradient>
+      </defs>
+      <ellipse cx="400" cy="470" rx="300" ry="12" fill="#0b1220" opacity="0.28" filter="url(#blur)"/>
+      <path d="M150 270 H650 L700 312 H100Z" fill="url(#tablemanger3top)"/>
+      <rect x="100" y="312" width="600" height="18" fill="url(#tablemanger3edge)"/>
+      <path d="M140 330 h18 l-10 140 h-14Z M642 330 h18 l2 140 h-14Z" fill="url(#tablemanger3edge)"/>
+      <path d="M210 330 h14 l-4 110 h-12Z M576 330 h14 l2 110 h-12Z" fill="#5d3e25" opacity=".8"/>
+      <path d="M380 200 q-24 30 -18 60 q4 18 38 18 q34 0 38 -18 q6 -30 -18 -60Z" fill="url(#tablemanger3vase)"/>
+      <path d="M392 202 q-10 -60 -40 -86 M402 200 q4 -70 30 -100 M398 200 q-30 -40 -76 -46" stroke="#5f7f5c" stroke-width="3" fill="none"/>
+      <ellipse cx="350" cy="116" rx="12" ry="7" fill="#7f9d7b" transform="rotate(-30 350 116)"/>
+      <ellipse cx="432" cy="100" rx="12" ry="7" fill="#7f9d7b" transform="rotate(30 432 100)"/>
+      <ellipse cx="322" cy="152" rx="12" ry="7" fill="#8fae8b"/>
+      <ellipse cx="250" cy="290" rx="44" ry="8" fill="#f8f4ee"/><ellipse cx="550" cy="290" rx="44" ry="8" fill="#f8f4ee"/>
+</svg>

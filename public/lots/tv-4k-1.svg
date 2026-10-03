@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="bgtv4k1" cx="50%" cy="28%" r="80%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#eef1f6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="basetv4k1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef1f6"/><stop offset="1" stop-color="#dfe5ee"/></linearGradient>
+    <linearGradient id="floortv4k1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dfe5ee"/><stop offset="1" stop-color="#dfe5ee"/></linearGradient>
+    <filter id="blur" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+  <rect x="-200" y="-200" width="1200" height="1000" fill="url(#basetv4k1)"/>
+  <rect x="-200" y="-200" width="1200" height="1000" fill="url(#bgtv4k1)"/>
+  <rect x="-200" y="440" width="1200" height="400" fill="url(#floortv4k1)" opacity="0.45"/>
+  
+      <defs>
+        <linearGradient id="tv4k1scr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e3a5f"/><stop offset="0.45" stop-color="#3b6e8f"/><stop offset="0.7" stop-color="#e8a87c"/><stop offset="1" stop-color="#2b2d42"/></linearGradient>
+        <linearGradient id="tv4k1frame" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2f38"/><stop offset="1" stop-color="#0f1217"/></linearGradient>
+        <linearGradient id="tv4k1hill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16324a"/><stop offset="1" stop-color="#0c1b2a"/></linearGradient>
+      </defs>
+      <ellipse cx="400" cy="478" rx="250" ry="14" fill="#0b1220" opacity="0.28" filter="url(#blur)"/>
+      <rect x="140" y="112" width="520" height="312" rx="10" fill="url(#tv4k1frame)"/>
+      <rect x="148" y="120" width="504" height="290" rx="4" fill="url(#tv4k1scr)"/>
+      <circle cx="520" cy="215" r="36" fill="#ffd8a8" opacity=".9"/>
+      <path d="M148 330 C230 280 300 300 360 318 C430 340 500 270 652 300 V410 H148Z" fill="url(#tv4k1hill)" opacity=".95"/>
+      <path d="M148 360 C260 330 360 370 460 350 C540 335 600 345 652 352 V410 H148Z" fill="#0a1420"/>
+      <path d="M148 120 L330 120 L200 410 L148 410Z" fill="#fff" opacity=".05"/>
+      <rect x="380" y="424" width="40" height="34" fill="#1a1e25"/>
+      <rect x="300" y="456" width="200" height="12" rx="6" fill="#23272f"/>
+      <rect x="392" y="414" width="16" height="3" rx="1.5" fill="#5eead4" opacity=".8"/>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="120 250 300 225" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="bgtrottinette3" cx="50%" cy="28%" r="80%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#eff0ec" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="basetrottinette3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eff0ec"/><stop offset="1" stop-color="#e1e3dc"/></linearGradient>
+    <linearGradient id="floortrottinette3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e1e3dc"/><stop offset="1" stop-color="#e1e3dc"/></linearGradient>
+    <filter id="blur" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+  <rect x="-200" y="-200" width="1200" height="1000" fill="url(#basetrottinette3)"/>
+  <rect x="-200" y="-200" width="1200" height="1000" fill="url(#bgtrottinette3)"/>
+  <rect x="-200" y="440" width="1200" height="400" fill="url(#floortrottinette3)" opacity="0.45"/>
+  
+      <defs><linearGradient id="trottinette3deck" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4048"/><stop offset="1" stop-color="#1d2025"/></linearGradient></defs>
+      <ellipse cx="400" cy="470" rx="280" ry="10" fill="#0b1220" opacity="0.28" filter="url(#blur)"/>
+      <circle cx="200" cy="420" r="46" fill="#1f2328"/><circle cx="200" cy="420" r="20" fill="#9aa1ab"/>
+      <circle cx="610" cy="420" r="46" fill="#1f2328"/><circle cx="610" cy="420" r="20" fill="#9aa1ab"/>
+      <path d="M200 420 L250 396 H560 L610 420" fill="none" stroke="#2b2f36" stroke-width="10" stroke-linejoin="round"/>
+      <rect x="240" y="380" width="330" height="22" rx="10" fill="url(#trottinette3deck)"/>
+      <path d="M610 420 L560 110" stroke="#2b2f36" stroke-width="14" stroke-linecap="round"/>
+      <path d="M500 104 H630" stroke="#2b2f36" stroke-width="12" stroke-linecap="round"/>
+      <rect x="548" y="148" width="26" height="12" rx="4" fill="#14b8a6"/>
+</svg>

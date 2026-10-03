@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="bgcasqueaudio1" cx="50%" cy="28%" r="80%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#f1ede8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="basecasqueaudio1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1ede8"/><stop offset="1" stop-color="#e3ddd5"/></linearGradient>
+    <linearGradient id="floorcasqueaudio1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3ddd5"/><stop offset="1" stop-color="#e3ddd5"/></linearGradient>
+    <filter id="blur" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+  <rect x="-200" y="-200" width="1200" height="1000" fill="url(#basecasqueaudio1)"/>
+  <rect x="-200" y="-200" width="1200" height="1000" fill="url(#bgcasqueaudio1)"/>
+  <rect x="-200" y="440" width="1200" height="400" fill="url(#floorcasqueaudio1)" opacity="0.45"/>
+  
+      <defs>
+        <linearGradient id="casqueaudio1cup" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a3f47"/><stop offset="1" stop-color="#16191d"/></linearGradient>
+        <linearGradient id="casqueaudio1pad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b6270"/><stop offset="1" stop-color="#2c3038"/></linearGradient>
+        <linearGradient id="casqueaudio1metal" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e8e4dc"/><stop offset="1" stop-color="#b7afa3"/></linearGradient>
+      </defs>
+      <ellipse cx="400" cy="480" rx="230" ry="14" fill="#0b1220" opacity="0.28" filter="url(#blur)"/>
+      <path d="M232 330 C232 150 568 150 568 330" fill="none" stroke="url(#casqueaudio1metal)" stroke-width="20" stroke-linecap="round"/>
+      <path d="M252 300 C262 182 538 182 548 300" fill="none" stroke="#2c3038" stroke-width="22" stroke-linecap="round"/>
+      <rect x="196" y="300" width="96" height="160" rx="44" fill="url(#casqueaudio1cup)"/>
+      <rect x="508" y="300" width="96" height="160" rx="44" fill="url(#casqueaudio1cup)"/>
+      <rect x="270" y="314" width="34" height="132" rx="17" fill="url(#casqueaudio1pad)"/>
+      <rect x="496" y="314" width="34" height="132" rx="17" fill="url(#casqueaudio1pad)"/>
+      <rect x="226" y="350" width="10" height="60" rx="5" fill="#c9a96e" opacity=".8"/>
+      <rect x="564" y="350" width="10" height="60" rx="5" fill="#c9a96e" opacity=".8"/>
+</svg>

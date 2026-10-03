@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="bgmachinecafe1" cx="50%" cy="28%" r="80%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#f4ece3" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="basemachinecafe1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4ece3"/><stop offset="1" stop-color="#e9dccd"/></linearGradient>
+    <linearGradient id="floormachinecafe1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9dccd"/><stop offset="1" stop-color="#e9dccd"/></linearGradient>
+    <filter id="blur" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+  <rect x="-200" y="-200" width="1200" height="1000" fill="url(#basemachinecafe1)"/>
+  <rect x="-200" y="-200" width="1200" height="1000" fill="url(#bgmachinecafe1)"/>
+  <rect x="-200" y="440" width="1200" height="400" fill="url(#floormachinecafe1)" opacity="0.45"/>
+  
+      <defs>
+        <linearGradient id="machinecafe1body" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3d42"/><stop offset="1" stop-color="#1d1f23"/></linearGradient>
+        <linearGradient id="machinecafe1steel" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f1f2f4"/><stop offset="0.5" stop-color="#b9bec5"/><stop offset="1" stop-color="#e6e8eb"/></linearGradient>
+        <linearGradient id="machinecafe1cup" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e7e2db"/></linearGradient>
+        <linearGradient id="machinecafe1coffee" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b3e1f"/><stop offset="1" stop-color="#3b2010"/></linearGradient>
+      </defs>
+      <ellipse cx="400" cy="478" rx="200" ry="14" fill="#0b1220" opacity="0.28" filter="url(#blur)"/>
+      <rect x="250" y="96" width="300" height="380" rx="26" fill="url(#machinecafe1body)"/>
+      <rect x="250" y="96" width="300" height="60" rx="26" fill="url(#machinecafe1steel)"/>
+      <rect x="250" y="130" width="300" height="26" fill="url(#machinecafe1steel)"/>
+      <rect x="296" y="176" width="208" height="40" rx="8" fill="#0d0e10"/>
+      <circle cx="320" cy="196" r="7" fill="#f59e0b"/><circle cx="346" cy="196" r="7" fill="#5eead4"/>
+      <rect x="370" y="190" width="110" height="12" rx="6" fill="#2a2d33"/>
+      <rect x="330" y="236" width="140" height="34" rx="10" fill="url(#machinecafe1steel)"/>
+      <rect x="380" y="270" width="40" height="16" rx="4" fill="#a3a8af"/>
+      <rect x="398" y="286" width="4" height="54" fill="#6b3e1f" opacity=".85"/>
+      <path d="M352 352 H448 L440 418 Q438 430 426 430 H374 Q362 430 360 418Z" fill="url(#machinecafe1cup)"/>
+      <path d="M448 366 Q478 368 476 390 Q474 410 444 408" fill="none" stroke="#e7e2db" stroke-width="9"/>
+      <ellipse cx="400" cy="354" rx="46" ry="7" fill="url(#machinecafe1coffee)"/>
+      <rect x="290" y="432" width="220" height="22" rx="6" fill="url(#machinecafe1steel)"/>
+      <path d="M380 330 q8 -20 0 -40 M420 330 q8 -20 0 -40" stroke="#fff" stroke-width="3" fill="none" opacity=".25"/>
+</svg>

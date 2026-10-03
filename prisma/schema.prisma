@@ -1,0 +1,349 @@
+// Lotelia — schéma de base de données (prototype DEMO)
+// Montants stockés en centimes (Int) pour éviter les erreurs d'arrondi.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+}
+
+enum ProductStatus {
+  ACTIVE
+  INACTIVE
+}
+
+/// Statut technique stocké. Le statut affiché (À venir, En cours, Presque terminé…)
+/// est dérivé à partir de ce statut et des dates (voir src/lib/draw-status.ts).
+enum DrawStatus {
+  SCHEDULED // créé, pas encore ouvert ou ouvert selon startsAt
+  CLOSED    // participations verrouillées, tirage en cours d'exécution
+  DRAWN     // gagnant désigné et enregistré
+  CANCELLED // annulé (minimum non atteint ou décision admin) — remboursements simulés
+  DISABLED  // désactivé par l'administrateur (masqué au public)
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+  REFUNDED
+}
+
+enum ParticipationStatus {
+  CONFIRMED
+  REFUNDED
+}
+
+enum PrizeStatus {
+  PENDING
+  CONTACTED
+  SHIPPED
+  DELIVERED
+}
+
+enum NotificationType {
+  ACCOUNT_CREATED
+  PASSWORD_RESET
+  PARTICIPATION_CONFIRMED
+  DRAW_REMINDER
+  DRAW_RESULT
+  DRAW_WON
+  DRAW_CANCELLED
+  PRIZE_DELIVERY
+}
+
+enum NotificationStatus {
+  QUEUED
+  SENT
+  FAILED
+}
+
+model User {
+  id              String     @id @default(cuid())
+  firstName       String
+  lastName        String
+  /// Pseudonyme affiché publiquement (page gagnants). Jamais l'e-mail.
+  displayName     String
+  email           String     @unique
+  passwordHash    String
+  birthDate       DateTime?  @db.Date
+  role            Role       @default(USER)
+  status          UserStatus @default(ACTIVE)
+  termsAcceptedAt DateTime
+  marketingOptIn  Boolean    @default(false)
+  lastLoginAt     DateTime?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  sessions       Session[]
+  resetTokens    PasswordResetToken[]
+  participations Participation[]
+  payments       Payment[]
+  tickets        Ticket[]
+  wins           Winner[]
+  notifications  Notification[]
+  adminLogs      AdminLog[]
+
+  @@index([createdAt])
+  @@map("users")
+}
+
+model Session {
+  /// SHA-256 du jeton de session (le jeton brut n'est jamais stocké)
+  id        String   @id
+  userId    String
+  expiresAt DateTime
+  ip        String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+model PasswordResetToken {
+  id        String    @id @default(cuid())
+  userId    String
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("password_reset_tokens")
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  name        String
+  description String
+  icon        String
+  sortOrder   Int       @default(0)
+  products    Product[]
+
+  @@map("categories")
+}
+
+model Product {
+  id               String         @id @default(cuid())
+  /// Numéro / référence du lot, ex. LOT-1024
+  reference        String         @unique
+  name             String
+  brand            String?
+  shortDescription String
+  description      String
+  categoryId       String
+  /// Coût d'achat réel du lot (centimes) — donnée interne, jamais affichée au public
+  purchaseCost     Int
+  /// Valeur affichée du lot (centimes)
+  displayValue     Int
+  status           ProductStatus  @default(ACTIVE)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  category Category       @relation(fields: [categoryId], references: [id])
+  images   ProductImage[]
+  draws    Draw[]
+
+  @@index([categoryId])
+  @@map("products")
+}
+
+model ProductImage {
+  id        String  @id @default(cuid())
+  productId String
+  url       String
+  alt       String
+  sortOrder Int     @default(0)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@map("product_images")
+}
+
+model Draw {
+  id            String      @id @default(cuid())
+  /// Numéro public séquentiel du tirage (affiché « Tirage n°1024 »)
+  number        Int         @unique @default(autoincrement())
+  productId     String
+  ticketPrice   Int
+  maxTickets    Int
+  minTickets    Int?
+  soldTickets   Int         @default(0)
+  startsAt      DateTime
+  endsAt        DateTime
+  status        DrawStatus  @default(SCHEDULED)
+  featured      Boolean     @default(false)
+  /// Engagement cryptographique publié AVANT l'ouverture : SHA-256(serverSeed)
+  seedHash      String
+  /// Graine secrète, révélée publiquement seulement après le tirage
+  serverSeed    String
+  closedAt      DateTime?
+  drawnAt       DateTime?
+  cancelledAt   DateTime?
+  cancelReason  String?
+  reminderSentAt DateTime?
+  prizeStatus   PrizeStatus @default(PENDING)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  product        Product         @relation(fields: [productId], references: [id])
+  tickets        Ticket[]
+  participations Participation[]
+  winner         Winner?
+  notifications  Notification[]
+
+  @@index([status, endsAt])
+  @@index([productId])
+  @@map("draws")
+}
+
+model Payment {
+  id          String        @id @default(cuid())
+  userId      String
+  amount      Int
+  currency    String        @default("EUR")
+  /// "mock" pour le prototype. Futur : "stripe", "adyen"…
+  provider    String
+  providerRef String?
+  /// Clé d'idempotence (une soumission de formulaire = un paiement maximum)
+  idempotencyKey String? @unique
+  status      PaymentStatus @default(PENDING)
+  /// Seules la marque et les 4 derniers chiffres sont conservés — jamais le numéro complet
+  cardBrand   String?
+  cardLast4   String?
+  isDemo      Boolean       @default(true)
+  failureReason String?
+  refundedAt  DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  user          User           @relation(fields: [userId], references: [id])
+  participation Participation?
+
+  @@index([userId])
+  @@map("payments")
+}
+
+model Participation {
+  id          String              @id @default(cuid())
+  userId      String
+  drawId      String
+  paymentId   String              @unique
+  quantity    Int
+  unitPrice   Int
+  totalAmount Int
+  status      ParticipationStatus @default(CONFIRMED)
+  createdAt   DateTime            @default(now())
+
+  user    User     @relation(fields: [userId], references: [id])
+  draw    Draw     @relation(fields: [drawId], references: [id])
+  payment Payment  @relation(fields: [paymentId], references: [id])
+  tickets Ticket[]
+
+  @@index([userId])
+  @@index([drawId])
+  @@map("participations")
+}
+
+model Ticket {
+  id              String   @id @default(cuid())
+  drawId          String
+  /// Numéro du ticket dans le tirage (1..maxTickets), affiché « #0001 »
+  number          Int
+  participationId String
+  userId          String
+  createdAt       DateTime @default(now())
+
+  draw          Draw          @relation(fields: [drawId], references: [id])
+  participation Participation @relation(fields: [participationId], references: [id])
+  user          User          @relation(fields: [userId], references: [id])
+  winner        Winner?
+
+  @@unique([drawId, number])
+  @@index([userId])
+  @@map("tickets")
+}
+
+/// Résultat d'un tirage. Table en écriture unique : un trigger PostgreSQL
+/// interdit toute modification ou suppression après insertion.
+model Winner {
+  id            String   @id @default(cuid())
+  drawId        String   @unique
+  ticketId      String   @unique
+  userId        String
+  publicName    String
+  ticketNumber  Int
+  ticketCount   Int
+  winningIndex  Int
+  ticketsDigest String
+  serverSeed    String
+  seedHash      String
+  previousHash  String
+  resultHash    String   @unique
+  drawnAt       DateTime
+
+  draw   Draw   @relation(fields: [drawId], references: [id])
+  ticket Ticket @relation(fields: [ticketId], references: [id])
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@index([drawnAt])
+  @@map("winners")
+}
+
+/// Sert à la fois de boîte d'envoi e-mail (journal) et de centre de notifications in-app.
+model Notification {
+  id        String             @id @default(cuid())
+  userId    String?
+  drawId    String?
+  toEmail   String
+  type      NotificationType
+  subject   String
+  bodyText  String
+  status    NotificationStatus @default(QUEUED)
+  transport String
+  error     String?
+  readAt    DateTime?
+  sentAt    DateTime?
+  createdAt DateTime           @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+  draw Draw? @relation(fields: [drawId], references: [id], onDelete: SetNull)
+
+  @@index([userId, createdAt])
+  @@map("notifications")
+}
+
+/// Journal d'activité : actions admin, actions système (tirages) et évènements de sécurité.
+model AdminLog {
+  id         String   @id @default(cuid())
+  actorId    String?
+  actorLabel String
+  action     String
+  entityType String
+  entityId   String?
+  details    Json?
+  ip         String?
+  createdAt  DateTime @default(now())
+
+  actor User? @relation(fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([createdAt])
+  @@index([entityType, entityId])
+  @@map("admin_logs")
+}

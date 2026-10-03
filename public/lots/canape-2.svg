@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="bgcanape2" cx="50%" cy="28%" r="80%">
+      <stop offset="0" stop-color="#3a4252" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#2a201b" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="basecanape2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a201b"/><stop offset="1" stop-color="#110c09"/></linearGradient>
+    <linearGradient id="floorcanape2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#000"/></linearGradient>
+    <filter id="blur" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+  <rect x="-200" y="-200" width="1200" height="1000" fill="url(#basecanape2)"/>
+  <rect x="-200" y="-200" width="1200" height="1000" fill="url(#bgcanape2)"/>
+  <rect x="-200" y="440" width="1200" height="400" fill="url(#floorcanape2)" opacity="0.35"/>
+  
+      <defs>
+        <linearGradient id="canape2fab" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fa58e"/><stop offset="1" stop-color="#6b8269"/></linearGradient>
+        <linearGradient id="canape2fab2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a3b8a1"/><stop offset="1" stop-color="#7f977d"/></linearGradient>
+        <linearGradient id="canape2wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b08158"/><stop offset="1" stop-color="#7c5534"/></linearGradient>
+      </defs>
+      <ellipse cx="400" cy="466" rx="320" ry="14" fill="#0b1220" opacity="0.28" filter="url(#blur)"/>
+      <rect x="110" y="190" width="580" height="170" rx="40" fill="url(#canape2fab)"/>
+      <rect x="140" y="214" width="170" height="120" rx="26" fill="url(#canape2fab2)"/>
+      <rect x="315" y="214" width="170" height="120" rx="26" fill="url(#canape2fab2)"/>
+      <rect x="490" y="214" width="170" height="120" rx="26" fill="url(#canape2fab2)"/>
+      <rect x="80" y="260" width="90" height="170" rx="34" fill="url(#canape2fab)"/>
+      <rect x="630" y="260" width="90" height="170" rx="34" fill="url(#canape2fab)"/>
+      <rect x="150" y="320" width="500" height="96" rx="22" fill="url(#canape2fab2)"/>
+      <line x1="316" y1="326" x2="316" y2="410" stroke="#6b8269" stroke-width="3"/>
+      <line x1="484" y1="326" x2="484" y2="410" stroke="#6b8269" stroke-width="3"/>
+      <rect x="180" y="226" width="96" height="80" rx="20" fill="#e9d8c4" transform="rotate(-6 228 266)"/>
+      <path d="M120 430 l-8 30 h12 l10 -30Z M680 430 l8 30 h-12 l-10 -30Z" fill="url(#canape2wood)"/>
+</svg>
