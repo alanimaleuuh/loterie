@@ -2,6 +2,8 @@
 # Démarrage du site dans le Codespace. Prépare automatiquement ce qui manque
 # (dépendances, build, base, données de démo) puis lance le serveur.
 cd "$(dirname "$0")/.."
+exec > >(tee -a /tmp/lotelia-start.log) 2>&1
+echo "=== Démarrage $(date) ==="
 
 URL="http://localhost:3000"
 if [ -n "$CODESPACE_NAME" ]; then URL="https://${CODESPACE_NAME}-3000.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"; fi
@@ -63,4 +65,4 @@ echo "    $URL"
 echo
 echo "  (ou onglet « Ports » → port 3000 → icône 🌐). Laissez ce terminal ouvert."
 echo
-exec npm start -- -H 0.0.0.0 -p 3000
+exec npm start -- -p 3000
